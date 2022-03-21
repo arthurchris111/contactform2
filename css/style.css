@@ -1,44 +1,39 @@
-
-*{
-   box-sizing: border-box
+* {
+  box-sizing: border-box;
 }
-
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(
- 53deg,
-  #ccfffc,
-  #ffcccf)
+  background: linear-gradient(53deg, #ccfffc, #ffcccf);
 }
 
-
-.container{
+.container {
   width: 50%;
   padding: 20px;
   border-radius: 20px;
   margin: auto;
-
 }
 
-.container{
-   box-shadow: 10px 10px 40px rgba(0,0,0,0.19); 
+.container {
+  box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.19);
 }
 
-input[type=text], input[type=password], input[type=date] {
+input[type="text"],
+input[type="password"],
+input[type="date"] {
   width: 100%;
   padding: 15px;
   margin: 5px 0 25px 0;
   display: inline-block;
   border: none;
   background: #f1f1f1;
-  
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=date]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus {
   background-color: #ddd;
   outline: none;
-
 }
 
 hr {
@@ -46,9 +41,8 @@ hr {
   margin-bottom: 25px;
 }
 
-
 button {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   color: white;
   padding-top: 14px;
   padding-bottom: 14px;
@@ -59,21 +53,17 @@ button {
   opacity: 0.8;
 }
 
-button:hover{
-   color: azure;
-   opacity: 1;
-   
+button:hover {
+  color: azure;
+  opacity: 1;
 }
 
-a:hover{
-   color:dodgerblue;
-   
+a:hover {
+  color: dodgerblue;
 }
-
-
 
 .username::before {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   content: "";
   width: 30px;
   height: 50px;
@@ -81,9 +71,16 @@ a:hover{
 }
 
 .username::after {
-  background-color: #04AA6D;
+  background-color: #04aa6d;
   content: "";
   width: 30px;
   height: 50px;
   border: 2px solid rgb(27, 2, 247);
+}
+
+.d-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
