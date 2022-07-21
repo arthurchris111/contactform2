@@ -62,7 +62,7 @@ a:hover {
   color: dodgerblue;
 }
 
-.username::before {
+/* .username::before {
   background-color: #04aa6d;
   content: "";
   width: 30px;
@@ -76,11 +76,12 @@ a:hover {
   width: 30px;
   height: 50px;
   border: 2px solid rgb(27, 2, 247);
-}
+} */
 
 .d-flex {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
