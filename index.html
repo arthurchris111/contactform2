@@ -6,13 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <title>Document</title>
+  <link rel="stylesheet" href="./bootstrap.css">
+  <title>Form</title>
 </head>
 
 <body>
 
-  <form action="mailto:info@arthurchristian111@gmail.com" method="post" enctype="text/plain">
-    <div class="container">
+  <form id="form ">
+    <div class="form">
       <h1>FORM</h1>
       <hr>
 
@@ -26,13 +27,13 @@
       <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-      <label for="psw-repeat"><b>Repeat Password</b></label>
-      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
+      <label for="confirmPassword"><b>Confirm Password</b></label>
+      <input type="password" placeholder="confirm Password" name="confirmPassword" id="confirmPassword" required>
 
-      <label for="phone"><b>Phone Number</b></label>
-      <input type="text" placeholder="Enter Phone Number" name="phone" id="phone" required>
+      <label for="phoneNumber"><b>Phone Number</b></label>
+      <input type="text" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required>
 
       <label for="phone"><b>Date Of Birth</b></label>
       <input type="date" placeholder="Enter Date Of Birth" name="date of birth" id="date" required>
@@ -40,17 +41,15 @@
       <label for="gender"><b>Gender</b></label>
       <input type="radio" name="gender" id="male"> male
       <input type="radio" name="gender" id="female"> female
-
       <hr>
-
       <label>
-        <input type="checkbox" checked="checked" name="remember"> Remember me
+        <input type="checkbox" checked="checked" name="remember" id="RememberMe"> Remember me
       </label>
 
-      <p>By creating an account you agree to our <a class="terms" href="#">Terms & Conditions</a>.</p>
+      <p>By creating an account you agree to our <a class="terms" href="#" id="terms">Terms & Conditions</a>.</p>
 
       <div>
-        <button type="button" class="botton">Submit</button>
+        <button type="button" class="botton" id="button" onclick="">Submit</button>
 
       </div>
     </div>
@@ -58,6 +57,6 @@
 
 
 </body>
-<script src="./index.js"></script>
+<script src="./app.js"></script>
 
 </html>
