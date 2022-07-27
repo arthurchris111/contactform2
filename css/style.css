@@ -1,17 +1,10 @@
 * {
   box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.form {
-  width: 50%;
-  padding: 20px;
-  border-radius: 20px;
-  margin: auto;
-
+body{
+ background: linear-gradient(53deg,#ccfffc,#ffcccf)
 }
 
 .form {
@@ -19,8 +12,17 @@ body {
   
 }
 
-input[type="number"]:focus,
+/* .icon{
+  position: absolute;
+  position: relative;
+  
+  
+} */
+.errorMassage{
+  visibility: hidden;
+}
 
+input[type="number"],
 input[type="text"],
 input[type="password"],
 input[type="date"] {
@@ -31,6 +33,7 @@ input[type="date"] {
   border: none;
   background: #f1f1f1;
 }
+
 
 input[type="text"]:focus,
 input[type="number"]:focus,
@@ -43,6 +46,13 @@ input[type="date"]:focus {
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
+  
+}
+
+.gender{
+  background: #f1f1f1;
+  height: fit-content;
+  border-color: #04aa6d;
 }
 
 button {
@@ -66,6 +76,20 @@ a:hover {
   color: dodgerblue;
 }
 
+/* .form-field.error input {
+    border-color: var(--error-color);
+}
+
+.form-field.success input {
+    border-color: var(--success-color);
+}
+
+
+.form-field small {
+    color: var(--error-color);
+}
+ */
+
 /* .username::before {
   background-color: #04aa6d;
   content: "";
@@ -82,10 +106,3 @@ a:hover {
   border: 2px solid rgb(27, 2, 247);
 } */
 
-.d-flex {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  
-}
