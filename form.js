@@ -1,13 +1,25 @@
-const firstNameEl = document.querySelector('#firstName');
-const lastNameEl = document.querySelector('#lastName');
+const firstNameEl = document.querySelector("#firstName");
+const lastNameEl = document.querySelector("#lastName");
+const emailEl = document.querySelector("#email");
+const passwordEl = document.querySelector("#password");
+const confirmPasswordEl = document.querySelector("#confirmPassword")
+const phoneNumberEl = document.querySelector("#phoneNumber");
+const dateEl = document.querySelector("#date");
+const termsEl = document.querySelector("#terms");
+const RememberMeEl = document.querySelector("#RememberMe");
+// const buttonEl = document.querySelector("#button");
+// const formEl = document.querySelector("#form");
 
-const passwordEl = document.querySelector('#password');
-const confirmPasswordEl = document.querySelector('#confirm-password');
+
+// const usernameEl = document.querySelector('#username');
+// const emailEl = document.querySelector('#email');
+// const passwordEl = document.querySelector('#password');
+// const confirmPasswordEl = document.querySelector('#confirm-password');
+
+const formEl = document.querySelector('#signup');
 
 
-
-
-const checkFName = () => {
+const CheckFname = () => {
 
     let valid = false;
 
@@ -17,9 +29,9 @@ const checkFName = () => {
     const username = firstNameEl.value.trim();
 
     if (!isRequired(username)) {
-        showError(firstNameEl, 'First Name cannot be blank.');
+        showError(firstNameEl, 'Username cannot be blank.');
     } else if (!isBetween(username.length, min, max)) {
-        showError(firstNameEl, `'First Name must be between ${min} and ${max} characters.`)
+        showError(firstNameEl, `Username must be between ${min} and ${max} characters.`)
     } else {
         showSuccess(firstNameEl);
         valid = true;
@@ -27,10 +39,28 @@ const checkFName = () => {
     return valid;
 };
 
+const CheckLname = () => {
+
+    let valid = false;
+
+    const min = 3,
+        max = 25;
+
+    const username = lastNameEl.value.trim();
+
+    if (!isRequired(username)) {
+        showError(lastNameEl, 'Username cannot be blank.');
+    } else if (!isBetween(username.length, min, max)) {
+        showError(lastNameEl, `Username must be between ${min} and ${max} characters.`)
+    } else {
+        showSuccess(lastNameEl);
+        valid = true;
+    }
+    return valid;
+};
+
 
 const checkEmail = () => {
-    const emailEl = document.querySelector('#email');
-
     let valid = false;
     const email = emailEl.value.trim();
     if (!isRequired(email)) {
@@ -119,37 +149,29 @@ const showSuccess = (input) => {
     error.textContent = '';
 }
 
-const contactForm = document.querySelector('#contactForm');
-contactForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    console.log('=====> was here');
-    const isEmailValid = checkEmail();
-    console.log({
-        isEmailValid
-    })
+
+form.addEventListener('submit', function (e) {
+    // prevent the form from submitting
+    e.preventDefault();
+
+    // validate fields
+    let isFnameValid = CheckFname(),
+        isLnameValid = CheckLname(),
+        isEmailValid = checkEmail(),
+        isPasswordValid = checkPassword(),
+        isConfirmPasswordValid = checkConfirmPassword();
+
+    let isFormValid = isFnameValid &&
+        isLnameValid &&
+        isEmailValid &&
+        isPasswordValid &&
+        isConfirmPasswordValid;
+
+    // submit to the server if the form is valid
+    if (isFormValid) {
+
+    }
 });
-// contactForm.addEventListener('submit', function (e) {
-//     console.log('========== was here')
-//     // prevent the form from submitting
-//     e.preventDefault();
-//     // validate fields
-//     let isUsernameValid = checkFName(),
-//         isEmailValid = checkEmail(),
-//         isPasswordValid = checkPassword(),
-//         isConfirmPasswordValid = checkConfirmPassword();
-
-//     let isFormValid = isUsernameValid &&
-//         isEmailValid &&
-//         isPasswordValid &&
-//         isConfirmPasswordValid;
-
-//     console.log("=========================>", isFormValid);
-
-//     // submit to the server if the form is valid
-//     if (isFormValid) {
-
-//     }
-// });
 
 
 const debounce = (fn, delay = 500) => {
@@ -166,19 +188,22 @@ const debounce = (fn, delay = 500) => {
     };
 };
 
-// contactForm.addEventListener('input', debounce(function (e) {
-//     switch (e.target.id) {
-//         case 'username':
-//             checkUsername();
-//             break;
-//         case 'email':
-//             checkEmail();
-//             break;
-//         case 'password':
-//             checkPassword();
-//             break;
-//         case 'confirm-password':
-//             checkConfirmPassword();
-//             break;
-//     }
-// }));
+form.addEventListener('input', debounce(function (e) {
+    switch (e.target.id) {
+        case 'firstName':
+            CheckFname();
+            break;
+        case 'lastName':
+            CheckLname();
+            break;
+        case 'email':
+            checkEmail();
+            break;
+        case 'password':
+            checkPassword();
+            break;
+        case 'confirm-password':
+            checkConfirmPassword();
+            break;
+    }
+}));
