@@ -52,76 +52,70 @@ submit.addEventListener("click", (event) => {
     }
     console.log(formValues);
 
-    // formSubmitted = true;
+    const isFormValid = fname() && lname() && mail() && mobile && fpassword() && selectDate() && conPassword() && conditions();
+
+    if (isFormValid == false) {
+        return
+    }
 
 
-    // var list = `<dl class="d-flex justify-content-start">
-    //   <dd class="me-2"> First Name: </dd>
-    //   <dt>${formValues.firstName}</dt>
-    // </dl>
-
-    // <dl class="d-flex justify-content-start">
-    //   <dd class="me-2">Last Name: </dd>
-    //   <dt>${formValues.lastName}</dt>
-    // </dl>
-
-    // <dl class="d-flex justify-content-start">
-    //   <dd class="me-2"> Email: </dd>
-    //   <dt>${formValues.email}</dt>
-    // </dl>
-
-    // <dl class = "d-flex justify-content-start" >
-    //   <dd class="me-2"> Password: </dd>
-    //   <dt> ${formValues.password} </dt> 
-    // </dl>
-
-    // <dl class = "d-flex justify-content-start">
-    //     <dd class = "me-2"> Confirm Password: </dd>
-    //     <dt> ${formValues.confirmPassword} </dt> 
-    // </dl>
-
-    // <dl class = "d-flex justify-content-start" >
-    //     <dd class = "me-2"> Phone Number: </dd>
-    //     <dt> ${formValues.phoneNumber} </dt>
-    // </dl>
+    formSubmitted = true;
 
 
-    // <dl class = "d-flex justify-content-start" >
-    //     <dd class = "me-2" > Date Of Birth: </dd>
-    //     <dt> ${formValues.date} </dt> 
-    // </dl>`
+    var list = `<dl class="d-flex justify-content-start">
+      <dd class="me-2"> First Name: </dd>
+      <dt>${formValues.firstName}</dt>
+    </dl>
+
+    <dl class="d-flex justify-content-start">
+      <dd class="me-2">Last Name: </dd>
+      <dt>${formValues.lastName}</dt>
+    </dl>
+
+    <dl class = "d-flex justify-content-start">
+      <dd class="me-2"> Email: </dd>
+      <dt>${formValues.email}</dt>
+    </dl>
+
+    <dl class = "d-flex justify-content-start ">
+      <dd class="me-2"> Password: </dd>
+      <dt> ${formValues.password} </dt> 
+    </dl>
+
+    <dl class = "d-flex justify-content-start " >
+        <dd class = "me-2"> Confirm Password: </dd>
+        <dt> ${formValues.confirmPassword} </dt> 
+    </dl>
+
+    <dl class = "d-flex justify-content-start" >
+        <dd class = "me-2"> Phone Number: </dd>
+        <dt> ${formValues.phoneNumber} </dt>
+    </dl>
+
+    <dl class = "d-flex justify-content-start " >
+        <dd class = "me-2" > Date Of Birth: </dd>
+        <dt> ${formValues.date} </dt> 
+    </dl>`
 
 
 
-    // document.getElementById('listID').innerHTML = list
+    document.getElementById('listID').innerHTML = list
 
-    // toggle(formSubmitted);
+    toggle(formSubmitted);
 
 });
 
-// const toggle = (show) => {
-//     if (show) {
-//         // document.getElementById('form').style.display = 'none';
-//         // document.getElementById('listID').style.display = 'block';
+const toggle = (show) => {
+    if (show) {
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('listID').style.display = 'block';
 
-//     } else {
-//         document.getElementById('form').style.display = 'block';
-//         document.getElementById('listID').style.display = 'none';
-//     }
-// }
+    } else {
+        document.getElementById('contactForm').style.display = 'block';
+        document.getElementById('listID').style.display = 'none';
+    }
+}
 
-
-
-
-// const validateInput = (inputField, errorId, inputText) => {
-//     if (inputField.value == "") {
-//         errorId.innerHTML = `Please enter your ${inputText}*`
-//         inputField.style.border = " solid 1px red"
-//         return false
-//     } else {
-//         return true
-//     }
-// }
 
 const showError = (input, message) => {
     const formField = input.parentElement;
@@ -143,10 +137,13 @@ const showSuccess = (input, message) => {
 const fname = () => {
     var regex = /^[a-zA-Z\s]+$/;
     if (firstName.value == "") {
-        showError(firstName, 'first name cannot be blank*.');
+        showError(firstName, 'Please enter your first name*.');
 
     } else if (regex.test(firstName.value) === false) {
         showError(firstName, 'Please enter a valid name*');
+
+    } else if (firstName.value.length < 3) {
+        showError(firstName, 'Characters must be more than 3*');
 
     } else {
         showSuccess(firstName, '');
@@ -161,6 +158,9 @@ const lname = () => {
 
     } else if (lastName.value === false) {
         showError(lastName, 'Please enter a valid name*');
+
+    } else if (lastName.value.length < 3) {
+        showError(lastName, 'Characters must be more than 3*');
 
     } else {
         showSuccess(lastName, '');
@@ -206,19 +206,22 @@ const mobile = () => {
 
 //first password
 const fpassword = () => {
-    var regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
+    var strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
     if (password.value == "") {
         showError(password, 'Please enter your password*');
 
-    } else if (password.value === false) {
-        showError(password, 'Please enter a valid password*');
+    } else if (strongRegex.test(password.value) === false) {
+        showError(password, 'Password must have at least 7 characters that include at least 1 lowercase character, 1 uppercase characters, 1 number, and 1 special character in (!@# $ % ^ & *)*');
 
     } else if (password.value.length <= 7) {
-        showError(password, 'Your password is too weak!');
+        // showError(password, 'Your password is too weak!');
+        showError(password, "")
 
     } else {
-        showSuccess(password, 'Strong password!');
+        // showSuccess(password, 'Strong password!');
+        showSuccess(password, '');
+
         return true
     }
     return false
@@ -234,8 +237,6 @@ const conPassword = () => {
     } else if (password.value !== confirmPassword.value) {
         showError(confirmPassword, 'Password not matched');
 
-    } else if (password.value === confirmPassword.value) {
-        showSuccess(confirmPassword, 'Password matched*');
     } else {
         showSuccess(confirmPassword, '');
         return true
@@ -279,9 +280,7 @@ const conditions = () => {
 //         genderErr.innerHTML = "Select your gender*"
 //     } else {
 //         genderErr.innerHTML = ""
-
 //     }
-
 // }
 
 contactForm.addEventListener('input', (event) => {
@@ -308,6 +307,7 @@ contactForm.addEventListener('input', (event) => {
             selectDate();
             break;
         case 'gender':
+            f
             genderSelection();
             break;
         case 'terms':

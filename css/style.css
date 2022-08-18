@@ -78,11 +78,11 @@ a:hover {
 
 
 .form-field.error input {
-    border-color: #dc3545;
+    border-color: red;
 }
 
 .form-field.success input {
-    border-color: #28a745;
+    border-color: green;
 }
 
 .form-field small {
