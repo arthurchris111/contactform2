@@ -76,19 +76,23 @@ a:hover {
   color: dodgerblue;
 }
 
-/* .form-field.error input {
-    border-color: var(--error-color);
+
+.form-field.error input {
+    border-color: #dc3545;
 }
 
 .form-field.success input {
-    border-color: var(--success-color);
+    border-color: #28a745;
 }
-
 
 .form-field small {
-    color: var(--error-color);
+    color: red;
 }
- */
+
+.form-field input {
+    border: solid 1px #ddd;
+    
+}
 
 /* .username::before {
   background-color: #04aa6d;

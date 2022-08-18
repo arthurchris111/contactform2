@@ -2,237 +2,317 @@ const firstName = document.getElementById("firstName");
 const lastName = document.getElementById("lastName");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
-const passwordConfirm = document.getElementById("passwordConfirm")
+const confirmPassword = document.getElementById("confirmPassword")
 const phoneNumber = document.getElementById("phoneNumber");
 const date = document.getElementById("date");
 const terms = document.getElementById("terms");
 const RememberMe = document.getElementById("RememberMe");
-const button = document.getElementById("button");
-const form = document.getElementById("form");
+const submit = document.getElementById("submit");
+const form = document.getElementById("contactForm");
+// var gender = form.querySelectorAll('input[name="gender"]:checked');
+// var formSubmitted = false;
 
-button.addEventListener("click", (event) => {
+submit.addEventListener("click", (event) => {
     event.preventDefault()
-    // formValidation();
     lname();
     mail();
     mobile();
     fpassword();
     selectDate();
     conPassword();
-    NameErr();
+    fname();
     conditions();
-    genderValidation();
-    // selectGender();
+    // genderSelection();
+    // details();
+
+    // const firstNameValid = validateInput(firstName, firstNameErr, 'first Name');
+    // const lastNameValid = validateInput(lastName, lastNameErr, "last Name");
+    // const emailValid = validateInput(email, emailErr, "email");
+    // const passwordValid = validateInput(password, passwordErr, "password");
+    // const confirmPasswordValid = validateInput(confirmPassword, confirmPasswordErr, "confirm password");
+    // const phoneNumberValid = validateInput(phoneNumber, phoneNumberErr, "phone number");
+    // const dateValid = validateInput(date, dateErr, "date");
+
+
+    // if (!firstNameValid && !lastNameValid && !emailValid && !passwordValid && !confirmPasswordValid && !phoneNumberValid && !dateValid) {
+    //     return;
+    // }
 
     const formValues = {
         "firstName": firstName.value,
         "lastName": lastName.value,
         "email": email.value,
         "password": password.value,
-        "passwordConfirm": passwordConfirm.value,
+        "confirmPassword": confirmPassword.value,
         "phoneNumber": phoneNumber.value,
         "terms": terms.value,
         "RememberMe": RememberMe.value,
         "date": date.value,
+        // "genderSelection": gender.value
     }
     console.log(formValues);
+
+    // formSubmitted = true;
+
+
+    // var list = `<dl class="d-flex justify-content-start">
+    //   <dd class="me-2"> First Name: </dd>
+    //   <dt>${formValues.firstName}</dt>
+    // </dl>
+
+    // <dl class="d-flex justify-content-start">
+    //   <dd class="me-2">Last Name: </dd>
+    //   <dt>${formValues.lastName}</dt>
+    // </dl>
+
+    // <dl class="d-flex justify-content-start">
+    //   <dd class="me-2"> Email: </dd>
+    //   <dt>${formValues.email}</dt>
+    // </dl>
+
+    // <dl class = "d-flex justify-content-start" >
+    //   <dd class="me-2"> Password: </dd>
+    //   <dt> ${formValues.password} </dt> 
+    // </dl>
+
+    // <dl class = "d-flex justify-content-start">
+    //     <dd class = "me-2"> Confirm Password: </dd>
+    //     <dt> ${formValues.confirmPassword} </dt> 
+    // </dl>
+
+    // <dl class = "d-flex justify-content-start" >
+    //     <dd class = "me-2"> Phone Number: </dd>
+    //     <dt> ${formValues.phoneNumber} </dt>
+    // </dl>
+
+
+    // <dl class = "d-flex justify-content-start" >
+    //     <dd class = "me-2" > Date Of Birth: </dd>
+    //     <dt> ${formValues.date} </dt> 
+    // </dl>`
+
+
+
+    // document.getElementById('listID').innerHTML = list
+
+    // toggle(formSubmitted);
+
 });
 
+// const toggle = (show) => {
+//     if (show) {
+//         // document.getElementById('form').style.display = 'none';
+//         // document.getElementById('listID').style.display = 'block';
+
+//     } else {
+//         document.getElementById('form').style.display = 'block';
+//         document.getElementById('listID').style.display = 'none';
+//     }
+// }
+
+
+
+
+// const validateInput = (inputField, errorId, inputText) => {
+//     if (inputField.value == "") {
+//         errorId.innerHTML = `Please enter your ${inputText}*`
+//         inputField.style.border = " solid 1px red"
+//         return false
+//     } else {
+//         return true
+//     }
+// }
+
+const showError = (input, message) => {
+    const formField = input.parentElement;
+    formField.classList.remove('success');
+    formField.classList.add('error');
+    const error = formField.querySelector('small');
+    error.textContent = message;
+};
+
+const showSuccess = (input, message) => {
+    const formField = input.parentElement;
+    formField.classList.remove('error');
+    formField.classList.add('success');
+    const success = formField.querySelector('small');
+    success.textContent = message;
+}
 
 // Validate name
-const NameErr = () => {
-
+const fname = () => {
+    var regex = /^[a-zA-Z\s]+$/;
     if (firstName.value == "") {
-        firstNameErr.innerHTML = "Please enter your name*"
-        firstName.style.border = " solid 1px red"
+        showError(firstName, 'first name cannot be blank*.');
+
+    } else if (regex.test(firstName.value) === false) {
+        showError(firstName, 'Please enter a valid name*');
+
     } else {
-        var regex = /^[a-zA-Z\s]+$/;
-        if (regex.test(firstName.value) === false) {
-            firstNameErr.innerHTML = "Please enter a valid name*"
-        } else {
-            // lastName.innerHTML = "Valid"
-            firstName.style.border = " solid 1px green"
-            // nameErr = false;
-        }
+        showSuccess(firstName, '');
+        return true;
     }
+    return false
 }
 
 const lname = () => {
-
     if (lastName.value == "") {
-        lastNameErr.innerHTML = "Please enter your name*"
-        lastName.style.border = " solid 1px red"
-    } else {
-        var regex = /^[a-zA-Z\s]+$/;
-        if (regex.test(lastName.value) === false) {
-            lastNameErr.innerHTML = "Please enter a valid name*"
-        } else {
-            // lastName.innerHTML = "Valid"
-            lastName.style.border = " solid 1px green"
-            // nameErr = false;
-        }
-    }
-}
+        showError(lastName, 'Please enter your last name*');
 
+    } else if (lastName.value === false) {
+        showError(lastName, 'Please enter a valid name*');
+
+    } else {
+        showSuccess(lastName, '');
+        return true
+    }
+    return false
+}
 
 
 // Validate email address
 const mail = () => {
+    var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
     if (email.value == "") {
-        emailErr.innerHTML = "Please enter your email*"
-        email.style.border = " solid 1px red"
+        showError(email, 'Please enter your email*');
+
+    } else if (regex.test(email.value) === false) {
+        showError(email, 'Please enter a valid email address*');
 
     } else {
-        // Regular expression for basic email validation
-        var regex = /^\S+@\S+\.\S+$/;
-        if (regex.test(email.value) === false) {
-            emailErr.innerHTML = "Please enter a valid email address*"
-        } else {
-            // email.innerHTML = "Valid"
-            email.style.border = " solid 1px green"
-            // emailErr = false;
-        }
+        showSuccess(email, '');
+        return true
     }
-
-
+    return false
 }
 
 
 // Validate mobile number
 const mobile = () => {
     if (phoneNumber.value == "") {
-        phoneNumberErr.innerHTML = "Please enter your phone number*"
-        phoneNumber.style.border = " solid 1px red"
+        showError(phoneNumber, 'Please enter your phone number*');
+
+    } else if (phoneNumber.value.length < 10) {
+        showError(phoneNumber, 'Please enter your phone number*');
 
     } else {
-        var regex = /^[0-9]\d{9}$/;
-        if (regex.test(phoneNumber, value) === false) {
-            phoneNumberErr.innerHTML = "Please enter a valid 10 digit mobile number*"
-        } else {
-            // phoneNumber.innerHTML = "Valid"
-            phoneNumber.style.border = " solid 1px green"
-
-            // phoneNumber = false;
-        }
+        showSuccess(phoneNumber, '');
+        return true
     }
+    return false
 }
 
 
-//  password
+//first password
 const fpassword = () => {
+    var regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
+
     if (password.value == "") {
-        passwordErr.innerHTML = "Please enter your password*"
-        password.style.border = " solid 1px red"
+        showError(password, 'Please enter your password*');
+
+    } else if (password.value === false) {
+        showError(password, 'Please enter a valid password*');
+
+    } else if (password.value.length <= 7) {
+        showError(password, 'Your password is too weak!');
+
     } else {
-        var regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
-        if (password.value === false) {
-            passwordErr.innerHTML = "Please enter a valid password"
-        } else {
-            // password.innerHTML = "Valid"
-            password.style.border = " solid 1px green"
-        }
+        showSuccess(password, 'Strong password!');
+        return true
     }
+    return false
 }
 
-// confirm_password
+
+// confirm password
 const conPassword = () => {
-    if (passwordConfirm.value == "") {
-        confirmPasswordErr.innerHTML = "Please enter your password*"
-        passwordConfirm.style.border = " solid 1px red"
+
+    if (confirmPassword.value == "") {
+        showError(confirmPassword, 'Please confirm your password*');
+
+    } else if (password.value !== confirmPassword.value) {
+        showError(confirmPassword, 'Password not matched');
+
+    } else if (password.value === confirmPassword.value) {
+        showSuccess(confirmPassword, 'Password matched*');
     } else {
-        var regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})";
-        if (passwordConfirm.value === false) {
-            confirmPasswordErr.innerHTML = "Please enter a valid password*"
-        } else {
-            // confirmErr.innerHTML = "Valid"
-            passwordConfirm.style.border = " solid 1px green"
-        }
+        showSuccess(confirmPassword, '');
+        return true
     }
+    return false
 }
 
+
+//date selection
 const selectDate = () => {
+
     if (date.value == "") {
-        date.style.border = "solid 1px red"
-        dateErr.innerHTML = "Please select the date*"
+        // date.style.border = "solid 1px red"
+        // dateErr.innerHTML = "Please select the date*"
+        showError(date, 'Please select the date*');
     } else {
-        date.style.border = "solid 1px green"
+        // date.style.border = "solid 1px green"
+        showSuccess(date, '');
+        return true
     }
+    return false
 }
 
-
+//terms and condition
 const conditions = () => {
     if (terms.checked == "") {
-        termsErr.innerHTML = "You must agree before submitting*"
+        showError(termsErr, 'You must agree before submitting*');
+
     } else {
-        terms.style.border = "solid 1px green"
+        showSuccess(termsErr, '');
+        return true
     }
+    return false
 }
 
+// // gender selection
+// const genderSelection = () => {
+//     // const genderMale = document.getElementById("male")
+//     // const genderFemale = document.getElementById("female")
+//     if (gender.checked == "" || gender.checked == "") {
+//         genderErr.innerHTML = "Select your gender*"
+//     } else {
+//         genderErr.innerHTML = ""
 
-const genderValidation = () => {
-    const genderMale = document.getElementById("male")
-    const genderFemale = document.getElementById("female")
-    if (genderMale.checked == "" && genderFemale.checked == "") {
-        genderErr.innerHTML = "Select your gender*"
+//     }
+
+// }
+
+contactForm.addEventListener('input', (event) => {
+    switch (event.target.id) {
+        case 'firstName':
+            fname();
+            break;
+        case 'lastName':
+            lname();
+            break;
+        case 'email':
+            mail();
+            break;
+        case 'password':
+            fpassword();
+            break;
+        case 'confirmPassword':
+            conPassword();
+            break;
+        case 'phoneNumber':
+            mobile();
+            break;
+        case 'date':
+            selectDate();
+            break;
+        case 'gender':
+            genderSelection();
+            break;
+        case 'terms':
+            conditions();
+            break;
+
     }
-}
-
-// Validate gender
-// const selectGender = () => {
-//     if (gender.value == "") {
-//         genderErr.innerHTML = "Please select your gender"
-//         gender.style.radio = " solid 1px red"
-
-//     } else {
-//         gender.innerHTML = ""
-//         // gender = false;
-//     }
-// }
-
-
-// Prevent the form from being submitted if there are any errors
-// if ((nameErr || emailErr || mobileErr || countryErr || genderErr) == true) {
-//     return false;
-// }
-
-
-// const formValidation = () => {
-
-//     if (firstName.value == "" || firstName.value == null) {
-//         firstName.style.border = " solid 1px red"
-//     } else {
-//         firstName.style.border = "solid 1px green"
-//     }
-//     if (lastName.value == "") {
-//         lastName.style.border = "solid 1px red"
-//     } else {
-//         lastName.style.border = "solid 1px green"
-//     }
-//     if (email.value == "") {
-//         email.style.border = "solid 1px red";
-//     } else {
-//         email.style.border = "solid 1px green"
-//     }
-//     if (password.value == "") {
-//         password.style.border = "solid 1px red"
-
-//     } else {
-//         password.style.border = "solid 1px green"
-//     }
-//     if (confirmPassword.value == "") {
-//         confirmPassword.style.border = "solid 1px red"
-//     } else {
-//         confirmPassword.style.border = "solid 1px green"
-//     }
-//     if (phoneNumber.value == "") {
-//         phoneNumber.style.border = "solid 1px red"
-//     } else {
-//         phoneNumber.style.border = "solid 1px green"
-//     }
-//     if (date.value == "") {
-//         date.style.border = "solid 1px red"
-//     } else {
-//         date.style.border = "solid 1px green"
-//     }
-
-// }
+})
