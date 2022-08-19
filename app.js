@@ -61,42 +61,50 @@ submit.addEventListener("click", (event) => {
 
     formSubmitted = true;
 
+    var list = `
+                <div div div class = "row vh-100 d-flex align-items-center" >
+                    <div class="col-lg-6">
+                      <div div class = "card shadow-sm p-3 mb-5 bg-body rounded" style = "width: 30rem;" >
+                        <div class="card-body">
+                            <dl class="d-flex justify-content-start">
+                                <dd class="me-2"> First Name: </dd>
+                                <dt>${formValues.firstName}</dt>
+                            </dl>
 
-    var list = `<dl class="d-flex justify-content-start">
-      <dd class="me-2"> First Name: </dd>
-      <dt>${formValues.firstName}</dt>
-    </dl>
+                            <dl class="d-flex justify-content-start">
+                                <dd class="me-2">Last Name: </dd>
+                                <dt>${formValues.lastName}</dt> 
+                            </dl>
 
-    <dl class="d-flex justify-content-start">
-      <dd class="me-2">Last Name: </dd>
-      <dt>${formValues.lastName}</dt>
-    </dl>
+                            <dl class = "d-flex justify-content-start">
+                                <dd class="me-2"> Email: </dd>
+                                <dt>${formValues.email}</dt>
+                            </dl>
 
-    <dl class = "d-flex justify-content-start">
-      <dd class="me-2"> Email: </dd>
-      <dt>${formValues.email}</dt>
-    </dl>
+                            <dl class = "d-flex justify-content-start ">
+                                <dd class="me-2"> Password: </dd>
+                                <dt> ${formValues.password} </dt> 
+                            </dl>
 
-    <dl class = "d-flex justify-content-start ">
-      <dd class="me-2"> Password: </dd>
-      <dt> ${formValues.password} </dt> 
-    </dl>
+                            <dl class = "d-flex justify-content-start " >
+                                <dd class = "me-2"> Confirm Password: </dd>
+                                <dt> ${formValues.confirmPassword} </dt> 
+                            </dl>
 
-    <dl class = "d-flex justify-content-start " >
-        <dd class = "me-2"> Confirm Password: </dd>
-        <dt> ${formValues.confirmPassword} </dt> 
-    </dl>
+                            <dl class = "d-flex justify-content-start" >
+                               <dd class = "me-2"> Phone Number: </dd>
+                               <dt> ${formValues.phoneNumber} </dt>
+                            </dl>
 
-    <dl class = "d-flex justify-content-start" >
-        <dd class = "me-2"> Phone Number: </dd>
-        <dt> ${formValues.phoneNumber} </dt>
-    </dl>
+                            <dl class = "d-flex justify-content-start " >
+                                <dd class = "me-2" > Date Of Birth: </dd>
+                                <dt> ${formValues.date} </dt> 
+                            </dl>
 
-    <dl class = "d-flex justify-content-start " >
-        <dd class = "me-2" > Date Of Birth: </dd>
-        <dt> ${formValues.date} </dt> 
-    </dl>`
-
+                        </div>
+                    </div>
+                 </div>
+             </div>`
 
 
     document.getElementById('listID').innerHTML = list
