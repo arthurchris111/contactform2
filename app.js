@@ -52,7 +52,7 @@ submit.addEventListener("click", (event) => {
     }
     console.log(formValues);
 
-    const isFormValid = fname() && lname() && mail() && mobile && fpassword() && selectDate() && conPassword() && conditions();
+    const isFormValid = ((fname() && lname() && mail() && mobile && fpassword() && selectDate() && conPassword() && conditions()) == true);
 
     if (isFormValid == false) {
         return
