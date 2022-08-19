@@ -100,7 +100,6 @@ submit.addEventListener("click", (event) => {
                                 <dd class = "me-2" > Date Of Birth: </dd>
                                 <dt> ${formValues.date} </dt> 
                             </dl>
-
                         </div>
                     </div>
                  </div>
